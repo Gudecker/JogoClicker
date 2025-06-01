@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body {
+    background: green;
+    font-family: 'pixelify sans', sans serif;
+    color: white;
+}
+
+#titulo {
+    text-align: center;
+    padding-top: 100px;
+    font-size: 100px;
+}
+
+#creditos {
+    text-align: center;
+    padding-top: 300px;
+    font-size: 40px;
+}
+
+.play {
+    text-align: center;
+}
+
+#play {
+    color: white;
+    font-family: 'pixelify sans', sans serif;
+    font-size: 50px;
+    width: 200px;
+    height: 100px;
+    background-color: red;
+    cursor: pointer;
+    border: none;
+}
+
+#play:hover {
+    background-color: rgb(194, 23, 23);
+    color: rgb(211, 211, 211);
+}
+
+.coin {
+    position: absolute;
+    cursor: pointer;
+}
+
+.bomb {
+    position: absolute;
+    cursor: pointer;
+}
+
+.coin img {
+    width: 80px;
+    height: 80px;
+}
+
+.bomb img {
+    width: 120px;
+    height: 120px;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: green;
+    overflow: hidden;
+    border: none;
+}
+
+#time {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 50px;
+    font-family: 'pixelify sans', sans-serif;
+    z-index: 10;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 50px;
+    font-family: 'pixelify sans', sans-serif;
+    z-index: 10;
+}
