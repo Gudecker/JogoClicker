@@ -1,34 +1,66 @@
 let seconds = 0;
 let score = 0;
 let timerInterval;
-
+let spawnInterval;
 const timeEl = document.getElementById('time');
 const scoreEl = document.getElementById('score');
 const game_container = document.getElementById('game-container');
 
-function startGame() {
-    if (!timerInterval) {
-        timerInterval = setInterval(increaseTime, 1000);
-    }
-    createObject('coin');
+function getModoJogo() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('modo') || 'infinito';
 }
 
-function increaseTime() {
-    let m = Math.floor(seconds / 60);
-    let s = seconds % 60;
-    m = m < 10 ? `0${m}` : m;
-    s = s < 10 ? `0${s}` : s;
-    timeEl.innerHTML = `Time: ${m}:${s}`;
-    seconds++;
+function startGame() {
+    const modo = getModoJogo();
+    if (modo === 'tempo') {
+        iniciarModoPorTempo();
+    } else {
+        iniciarModoInfinito();
+    }
+}
+
+function iniciarModoPorTempo() {
+    let tempo = 60;
+    score = 0;
+    scoreEl.textContent = 'Score: 0';
+    timeEl.style.display = 'block';
+    timeEl.textContent = `Tempo ${tempo < 10 ? '0' : ''}${tempo}`;
+    game_container.innerHTML = "";
+
+    spawnRandomly();
+
+    timerInterval = setInterval(() => {
+        tempo--;
+        timeEl.textContent = `Tempo ${tempo < 10 ? '0' : ''}${tempo}`;
+        if (tempo <= 0) {
+            clearInterval(timerInterval);
+            clearTimeout(spawnInterval);
+            window.location.href = 'over.html';
+        }
+    }, 1000);
+}
+
+function iniciarModoInfinito() {
+    score = 0;
+    scoreEl.textContent = 'Score: 0';
+    timeEl.style.display = 'none';
+    game_container.innerHTML = "";
+
+    spawnRandomly();
+}
+
+function spawnRandomly() {
+    for (let i = 0; i < 3; i++) {
+        createRandomObject();
+    }
+    const nextSpawn = Math.random() * 1100 + 700;
+    spawnInterval = setTimeout(spawnRandomly, nextSpawn);
 }
 
 function createRandomObject() {
     const isCoin = Math.random() > 0.5;
-    if (isCoin) {
-        createObject('coin');
-    } else {
-        createObject('bomb');
-    }
+    createObject(isCoin ? 'coin' : 'bomb');
 }
 
 function createObject(type) {
@@ -60,25 +92,15 @@ function getRandomLocation() {
 function catchCoin() {
     increaseScore();
     this.remove();
-    spawnNewObjects();
+    createRandomObject();
+    createRandomObject();
 }
 
 function catchBomb() {
-    alert('Game Over!');
-    window.location.href = 'index.html';
+    window.location.href = 'over.html';
 }
 
 function increaseScore() {
     score++;
     scoreEl.innerHTML = `Score: ${score}`;
-}
-
-function spawnNewObjects() {
-    createObject('coin');
-    const isCoin = Math.random() > 0.5;
-    if (isCoin) {
-        createObject('coin');
-    } else {
-        createObject('bomb');
-    }
 }

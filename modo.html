@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha o Modo</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1 id="titulo">ESCOLHA O MODO</h1>
+    </div>
+    <div class="play">
+        <button class="play-btn" onclick="escolherModo('infinito')">Modo Infinito</button>
+        <button class="play-btn" onclick="escolherModo('tempo')">Modo por Tempo</button>
+    </div>
+    <script>
+        function escolherModo(modo) {
+            window.location.href = `jogo.html?modo=${modo}`;
+        }
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 body {
     background: green;
-    font-family: 'pixelify sans', sans serif;
+    font-family: 'pixelify sans', sans-serif;
     color: white;
 }
 
@@ -20,17 +20,19 @@ body {
 
 .play {
     text-align: center;
+    margin-top: 40px;
 }
 
 #play {
     color: white;
-    font-family: 'pixelify sans', sans serif;
+    font-family: 'pixelify sans', sans-serif;
     font-size: 50px;
     width: 200px;
     height: 100px;
     background-color: red;
     cursor: pointer;
     border: none;
+    border-radius: 10px;
 }
 
 #play:hover {
@@ -38,24 +40,53 @@ body {
     color: rgb(211, 211, 211);
 }
 
-.coin {
-    position: absolute;
+#play-again {
+    color: white;
+    font-family: 'pixelify sans', sans-serif;
+    font-size: 50px;
+    width: 450px;
+    height: 100px;
+    background-color: red;
     cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin: 0 20px;
+    transition: background 0.2s, color 0.2s;
 }
 
-.bomb {
+.play-btn {
+    color: white;
+    font-family: 'pixelify sans', sans-serif;
+    font-size: 50px;
+    width: 450px;
+    height: 100px;
+    background-color: red;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin: 0 20px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.play-btn:hover {
+    background-color: rgb(194, 23, 23);
+    color: rgb(211, 211, 211);
+}
+
+.coin, .bomb {
     position: absolute;
     cursor: pointer;
+    animation: shake 1s infinite;
 }
 
 .coin img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
 }
 
 .bomb img {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
 }
 
 #game-container {
@@ -87,4 +118,13 @@ body {
     font-size: 50px;
     font-family: 'pixelify sans', sans-serif;
     z-index: 10;
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg);}
+    20% { transform: translate(-5px, 0) rotate(-5deg);}
+    40% { transform: translate(5px, 0) rotate(5deg);}
+    60% { transform: translate(-5px, 0) rotate(-5deg);}
+    80% { transform: translate(5px, 0) rotate(5deg);}
+    100% { transform: translate(0, 0) rotate(0deg);}
 }
